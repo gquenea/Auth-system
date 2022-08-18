@@ -1,3 +1,35 @@
+body {
+    margin: 0;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.main {
+    display: flex;
+}
+.leftside {
+    background: url(https://data.1freewallpapers.com/download/palm-leaves-dark-plant.jpg);
+    background-size: cover;
+    height: 100vh;
+    width: 55%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.title {
+    margin-left: 15%;
+
+}
+.socialmedia {
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
+    
+}
+.socialmedia img:nth-child(2) {
+   margin: 0 20px 0 20px;
+}
 .rightside {
     background-color:rgba(15, 15, 15, 0.966);
     width: 45%;
@@ -47,10 +79,12 @@ input {
     border: none;
     border-radius: 5px;
     opacity: 0.7;
+    color: white;
+    padding-left: 20px;
 }
 
 input::placeholder {
-    padding-left: 20px;
+
     opacity: 0.3;
     color: white;
     

@@ -4,15 +4,15 @@ const port = 3001;
 const Pool = require("pg").Pool;
 require("dotenv").config();
 var jwt = require("jsonwebtoken");
+const cors = require("cors");
 
-// app.use(express.json());
-// app.use(cors()))
+app.use(express.json());
+app.use(cors());
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var router = express.Router();
 
-// @TODO: Modify this secret
 app.set("superSecret", "success is inevitable");
 
 const pool = new Pool({
@@ -34,14 +34,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Gatekeeper
 function gateKeeper(req, res, next) {
-  // check authorization header for token
   var token = req.headers["x-access-token"];
 
-  // decode token
   if (token) {
-    // verifies secret and checks exp
     jwt.verify(token, app.get("superSecret"), function (err, decoded) {
       if (err) {
         return res.status(403).json({
@@ -49,14 +45,11 @@ function gateKeeper(req, res, next) {
           message: "Failed to authenticate token.",
         });
       } else {
-        // if everything is good, save to request for use in other routes
         req.decoded = decoded;
         next();
       }
     });
   } else {
-    // if there is no token
-    // return an error
     return res.status(403).send({
       success: false,
       message: "No token provided.",
@@ -68,9 +61,7 @@ router.post("/register", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const email = req.body.email;
-  const passhash = req.body.passhash;
-
-  console.log("firstname: " + firstname);
+  const passhash = req.body.password;
 
   bcrypt.hash(passhash, saltRounds, (err, hash) => {
     if (err) {
@@ -78,7 +69,7 @@ router.post("/register", (req, res) => {
     }
 
     pool.query(
-      "INSERT INTO users (firstname, lastname, email, passhash) VALUES (?,?,?,?)",
+      "INSERT INTO users (firstname, lastname, email, passhash) VALUES ($1,$2,$3,$4);",
 
       [firstname, lastname, email, hash],
       (err, result) => {
@@ -111,9 +102,8 @@ router.post("/login", (req, res) => {
         var user = result.rows[0];
         bcrypt.compare(passhash, user.passhash, (error, response) => {
           if (response) {
-            // Use JWT library for generating 24 hour valid token based on the user retrieved from the DB and our superSecret.
             var token = jwt.sign(user, app.get("superSecret"), {
-              expiresInMinutes: 1440,
+              expiresIn: "1m",
             });
             res.status(200).json({
               success: true,

@@ -8,7 +8,7 @@ body {
     display: flex;
 }
 .leftside {
-    background: url(https://data.1freewallpapers.com/download/palm-leaves-dark-plant.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://data.1freewallpapers.com/download/palm-leaves-dark-plant.jpg);
     background-size: cover;
     height: 100vh;
     width: 55%;
@@ -30,6 +30,13 @@ body {
 .socialmedia img:nth-child(2) {
    margin: 0 20px 0 20px;
 }
+
+button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+}
+
 .rightside {
     background-color:rgba(15, 15, 15, 0.966);
     width: 45%;
@@ -39,13 +46,15 @@ body {
     
 }
 
-.signin {
+.signinAndBack {
     position: absolute;
+    font-size: 20px;
     top: 20px;
     right: 20px;
     margin-right: 20px;
     color: grey;
     opacity: 0.6;
+    cursor: pointer;
 }
 
 
@@ -58,11 +67,9 @@ body {
 }
 
 
-.logintitle {
+.loginTitle {
     color: white;
-    border-radius: 10px 0px 10px 0px;
     margin-bottom: 0;
-    
 }
 
 .login p:nth-child(2) {
@@ -72,9 +79,9 @@ body {
 }
 
 input {
-    width: 100%;
-    height: 30px;
-    margin: 5px 0 5px 0;
+    width: 90%;
+    height: 40px;
+    margin: 10px 0 10px 0;
     background-color: black;
     border: none;
     border-radius: 5px;
@@ -87,22 +94,41 @@ input::placeholder {
 
     opacity: 0.3;
     color: white;
-    
+    font-size: 14px;
 }
 
 .forgot {
-    font-size: xx-small;
+    font-size: x-small;
     opacity: 0.6;
     position: relative;
-    text-align: end;
+    text-align: end;   
 }
 
-button {
+
+.submit {
     margin-top: 30px;
     background-color: rgb(13, 190, 190);
     color: white;
     border-radius: 50px;
     padding: 10px 20px;
     opacity: 0.8;
-
 }
+
+.submit:hover {
+    background-color: rgb(5, 126, 126);
+}
+
+span {
+    width: 100px;
+    height: 100px;
+    padding: 0px 10px 2px 10px;
+  
+    background:
+      linear-gradient(to right, rgb(13, 190, 190) 1px, transparent 0px) 0 0,
+      linear-gradient(to left, rgb(13, 190, 190) 1px, transparent 0px) 100% 100%,
+      linear-gradient(to bottom, rgb(13, 190, 190) 1px, transparent 0px) 0 0,
+      linear-gradient(to top, rgb(13, 190, 190) 1px, transparent 0px) 100% 100%;
+  
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+  }

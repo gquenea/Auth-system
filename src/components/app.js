@@ -4,7 +4,6 @@ import LogIn from "./LogIn/LogIn";
 import useToken from "./LogIn/useToken";
 import { Route, Routes } from "react-router-dom";
 import Register from "./Register/register";
-import { Link } from "react-router-dom";
 
 function App() {
   const { token, setToken } = useToken();

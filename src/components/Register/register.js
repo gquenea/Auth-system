@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import App from "../app";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+import "../../styles/Register.css";
 
 function Register() {
   const [firstnameReg, setFirstnameReg] = useState("");
@@ -10,56 +10,62 @@ function Register() {
   const [passwordReg, setPasswordReg] = useState("");
 
   const registerCall = () => {
-    axios
-      .post("http://localhost3001/api/register", {
-        firstname: firstnameReg,
-        lastname: lastnameReg,
-        email: emailReg,
-        password: passwordReg,
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    Axios.post("/api/register", {
+      firstname: firstnameReg,
+      lastname: lastnameReg,
+      email: emailReg,
+      password: passwordReg,
+    }).then((response) => {
+      console.log(response);
+    });
   };
 
   return (
     <div>
-      <form action="">
-        <input
-          type="text"
-          placeholder="Firstname"
-          onChange={(e) => {
-            setFirstnameReg(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Lastname"
-          onChange={(e) => {
-            setLastnameReg(e.target.value);
-          }}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => {
-            setEmailReg(e.target.value);
-          }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => {
-            setPasswordReg(e.target.value);
-          }}
-        />
-        {/* <input type="password" placeholder="Confirm Password" /> */}
+      <div className="registerPage">
+        <Link to="/">
+          <button className="signinAndBack">Retour</button>
+        </Link>
+        <h1 className="registerTitle">
+          Créez votre <span>compte</span>
+        </h1>
+        <form action="" className="registerForm">
+          <input
+            type="text"
+            placeholder="Firstname"
+            onChange={(e) => {
+              setFirstnameReg(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Lastname"
+            onChange={(e) => {
+              setLastnameReg(e.target.value);
+            }}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => {
+              setEmailReg(e.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPasswordReg(e.target.value);
+            }}
+          />
+          {/* <input type="password" placeholder="Confirm Password" /> */}
 
-        <button onClick={registerCall}>Créer un compte</button>
-      </form>
-      <Link to="/">
-        <button>Retour</button>
-      </Link>
+          <button className="submit" onClick={registerCall}>
+            CRÉER VOTRE COMPTE
+          </button>
+        </form>
+      </div>
+      <div className="banner"></div>
     </div>
   );
 }

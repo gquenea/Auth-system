@@ -1,0 +1,39 @@
+.registerPage {
+    background-color: rgba(15, 15, 15, 0.966);
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerForm {
+   display: flex;
+   flex-direction: column;
+   width: 20%;
+   align-items: center;
+}
+
+.registerTitle {
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 40px;
+}
+
+.banner {
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://data.1freewallpapers.com/download/palm-leaves-dark-plant.jpg);
+    height: 55vh;
+    background-size: cover;
+}
+
+.hr {
+    height: 2px;
+    width: 10%;
+    background-color: white;
+    margin-bottom: 50px;
+    
+}
+
+
+

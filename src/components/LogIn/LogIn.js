@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "../../styles/Home.css";
+import React, { useState } from "react";
+import "../../styles/LogIn.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Register from "../Register/register";
 
 async function logInUser(credentials) {
   return fetch("/api/login", {
@@ -44,11 +43,14 @@ function LogIn({ setToken }) {
         </div>
       </div>
       <div className="rightside">
-        <Link to="/register" className="signin">
-          <button className="signin">S'inscrire</button>
+        <Link to="/register" className="">
+          <button className="signinAndBack">S'inscrire</button>
         </Link>
         <div className="login">
-          <h1 className="logintitle">Brand name</h1>
+          <h1 className="loginTitle">
+            Brand <span>name</span>
+          </h1>
+
           <p>Lorem ipsum dolor sit amet consectetur.</p>
           <form onSubmit={handleSubmit}>
             <input
@@ -62,7 +64,9 @@ function LogIn({ setToken }) {
               onChange={(e) => setPasshash(e.target.value)}
             />
             <p className="forgot">Mot de passe oublié ?</p>
-            <button type="submit">SE CONNECTER</button>
+            <button className="submit" type="submit">
+              SE CONNECTER
+            </button>
           </form>
         </div>
       </div>
